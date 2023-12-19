@@ -51,6 +51,16 @@ class ParticipantController {
       res.status(400).json({ messageError: error });
     }
   }
+
+  async deleteParticipant(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const deleteUser = await this.participantService.deleteParticipant(id);
+      res.status(200).json(deleteUser);
+    } catch (error) {
+      res.status(400).json({ messageError: error });
+    }
+  }
 }
 
 export { ParticipantController };

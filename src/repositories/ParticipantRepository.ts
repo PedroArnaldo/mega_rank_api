@@ -38,6 +38,15 @@ class ParticipantRepository {
 
     return updateParticipant;
   }
+
+  async deleteParticipant(id: string): Promise<Participant> {
+    const deleteUser = await prismaClient.participant.delete({
+      where: {
+        id: id,
+      },
+    });
+    return deleteUser;
+  }
 }
 
 export { ParticipantRepository };

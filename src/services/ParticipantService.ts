@@ -24,6 +24,10 @@ class ParticipantService {
     //validar dados antes de realizar atualização do participante
     return this.participantRepository.updateParticipant(id, data);
   }
+
+  async deleteParticipant(id: string): Promise<Participant> {
+    return this.participantRepository.deleteParticipant(id);
+  }
 }
 
 export { ParticipantService };

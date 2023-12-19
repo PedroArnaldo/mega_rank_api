@@ -15,4 +15,8 @@ router.put("/participant/:id", (request, response) => {
   return participantController.updateParticipan(request, response);
 });
 
+router.delete("/participant/:id", (request, response) => {
+  return participantController.deleteParticipant(request, response);
+});
+
 export { router };
