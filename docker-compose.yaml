@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db-postgres:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    container_name: db-postgres-mega-rank-api
+    restart: always
+    volumes:
+      - pgdata:/data/postgres
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root_db
+    network_mode: host
+  app:
+    build: .
+    container_name: mega_rank_api
+    ports:
+      - 3030:3030
+    volumes:
+      - .:/usr/app
+    network_mode: host
+
+volumes:
+  pgdata:
+    driver: local
