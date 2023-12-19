@@ -15,6 +15,15 @@ class ParticipantService {
     );
     return newParticipant;
   }
+
+  async getAllParticipants(): Promise<Participant[]> {
+    return this.participantRepository.getAllParticipants();
+  }
+
+  async updateParticipant(id: string, data: Participant): Promise<Participant> {
+    //validar dados antes de realizar atualização do participante
+    return this.participantRepository.updateParticipant(id, data);
+  }
 }
 
 export { ParticipantService };
