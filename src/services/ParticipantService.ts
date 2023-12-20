@@ -9,7 +9,6 @@ class ParticipantService {
   }
 
   async createParticipant(data: Participant): Promise<Participant> {
-    //realizar validações
     const newParticipant = await this.participantRepository.createParticipants(
       data
     );
@@ -21,7 +20,6 @@ class ParticipantService {
   }
 
   async updateParticipant(id: string, data: Participant): Promise<Participant> {
-    //validar dados antes de realizar atualização do participante
     return this.participantRepository.updateParticipant(id, data);
   }
 
