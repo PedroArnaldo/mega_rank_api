@@ -21,3 +21,11 @@ model Participant{
 
   @@map("participants")
 }
+
+model User{
+  id String @default(uuid())
+  name String @unique
+  password String
+
+  @@map("users")
+}
