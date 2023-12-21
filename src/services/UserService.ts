@@ -31,7 +31,7 @@ class UserService {
   async authenticateUser(data: User): Promise<string> {
     const userAlreadyExists = await this.userRepository.UserExists(data.name);
 
-    if (userAlreadyExists) throw "User or password incorrect";
+    if (!userAlreadyExists) throw "User or password incorrect";
 
     const passwordMatch = compare(data.password, userAlreadyExists.password);
 

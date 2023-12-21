@@ -1,13 +1,6 @@
 import { Router } from "express";
-import { participantController } from "./controllers";
 
-import { UserRepository } from "./repositories/UserRepository";
-import { UserService } from "./services/UserService";
-import { UserController } from "./controllers/UserController";
-
-const userRepository = new UserRepository();
-const userService = new UserService(userRepository);
-const userController = new UserController(userService);
+import { participantController, userController } from "./controllers";
 
 const router = Router();
 
@@ -28,5 +21,7 @@ router.delete("/participant/:id", (request, response) => {
 });
 
 router.post("/users", userController.createUser);
+
+router.post("/login", userController.authenticateUser);
 
 export { router };
