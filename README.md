@@ -16,8 +16,6 @@ Para utilizar a API MegaRank, é necessário ter o Docker e o Node.js instalados
 
 ### 🔨 Guia de instalação
 
-Explique aqui um passo a passo mostrando como deve executar para ter um ambiente de desenvolvimento em execução, desde instalar e rodar o projeto.
-
 - Clone o repositório:
 
 ```
@@ -38,7 +36,7 @@ npx prisma generate
 
 3 - Configuração do Banco de Dados:
 
-    3.1 - Configura a string de conexção e coloque no .env
+- 3.1 - Configura a string de conexção e coloque no .env
 
 4- Configura a secreat seed para JWT:
 
@@ -46,15 +44,145 @@ npx prisma generate
 SECRET_KEY="coloque uma seed"
 ```
 
-## REST API
-
-## 🛠️ Executando os testes
-
-Explique como executar os testes automatizados para este sistema.
+5 - Inicie a aplicação:
 
 ```
-Coloque exemplos
+docker compose up
 ```
+
+## ⚙ EndPoints
+
+- Create User - Essa rota server para criar o usuário.
+  OBS: o nome é um identificador único.
+
+`POST /users`
+
+- Request:
+
+```json
+{
+  "name": "Pedro Lopes",
+  "password": "mypassword"
+}
+```
+
+- Response:
+
+```json
+{
+  "id": "1",
+  "name": "Pedro Lopes",
+  "password": "mypassword"
+}
+```
+
+- Login - Essa rota server para fazer o login na aplicação, ela retorna um token de autorização.
+  OBS: o nome é um identificador unico.
+
+`POST /users`
+
+- Request:
+
+```json
+{
+  "name": "Pedro Lopes",
+  "password": "mypassword"
+}
+```
+
+- Response:
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDMyMDE3MDUsImV4cCI6MTcwMzIwMjkwNSwic3ViIjoiZDhjZGFiNzUtOGYwYy00YTY1LTk5OWItNmEyZmIzYTI3OThjIn0.fEO3gaUMpnzzWYeTcUG6z4pu9hDxnYo5MgInucw20tw"
+}
+```
+
+---
+
+`Estas rotas são responsáveis por manipular informações dos participantes e requerem autenticação na aplicação para serem acessadas.`
+
+- Lista os participantes.
+
+`GET /participants`
+
+- Response:
+
+```json
+[
+  {
+    "id": "36b8f84d-df4e-4d49-b662-bcde71a8764f",
+    "name": "Gabriel de Jesus",
+    "imageUrl": "https://github.com/gabrieldejesus.png",
+    "xp": 220,
+    "socialNetwork": "https://www.linkedin.com/in/gabrieldejesus"
+  },
+  {
+    "name": "Pedro Lopes",
+    "imageUrl": "https://github.com/PedroArnaldo",
+    "xp": 320,
+    "socialNetwork": "https://www.linkedin.com/in/pedroarnaldoo"
+  }
+]
+```
+
+- Cadastrar um novo participante - Cria um novo participante com os seguintes campos no corpo da requisição: name, imageUrl, xp, socialNetwork.
+
+`POST /participants`
+
+- Request:
+
+```json
+{
+  "name": "Pedro Lopes",
+  "imageUrl": "https://github.com/PedroArnaldo",
+  "xp": 320,
+  "socialNetwork": "https://www.linkedin.com/in/pedroarnaldoo"
+}
+```
+
+- Response:
+
+```json
+{
+  "id": "36b8f84d-df4e-4d49-b662-bcde71a87a20",
+  "name": "Pedro Lopes",
+  "imageUrl": "https://github.com/PedroArnaldo",
+  "xp": 320,
+  "socialNetwork": "https://www.linkedin.com/in/pedroarnaldoo"
+}
+```
+
+- Atualizar um participante existente - Atualiza as informações de um participante existente com base no id e responde com participante atualizado.
+
+`PUT /participants/:id`
+
+- Request:
+
+```json
+{
+  "name": "Pedro Lopes",
+  "imageUrl": "https://github.com/PedroArnaldo",
+  "xp": 31200,
+  "socialNetwork": "https://www.linkedin.com/in/pedroarnaldoo"
+}
+```
+
+- Response:
+
+```json
+{
+  "id": "1223",
+  "name": "Pedro Lopes",
+  "imageUrl": "https://github.com/PedroArnaldo",
+  "xp": 31200,
+  "socialNetwork": "https://www.linkedin.com/in/pedroarnaldoo"
+}
+```
+
+- Remover um participante - Remove um participante com base no id.
+
+`DELETE /participants/:id`
 
 ## 📦 Tecnologias usadas:
 
