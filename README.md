@@ -47,7 +47,13 @@ SECRET_KEY="coloque uma seed"
 5 - Inicie a aplicação:
 
 ```
-docker compose up
+docker compose up -d
+```
+
+6 - Criando a tabela no banco de dados:
+
+```
+npx prisma migrate dev
 ```
 
 ## ⚙ EndPoints
@@ -195,6 +201,15 @@ docker compose up
 - ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
+## 🛠️ Features Futuras e Em Andamento:
+
+1 - Implementação de testes unitários e testes Integração
+
+2 - Implementar injeção de dependência
+2.1 - Identificar as Dependências
+2.2 - Criar Interfaces
+2.3 - Configurar as Classes para Aceitar Dependência
 
 ## 👷 Autor
 
